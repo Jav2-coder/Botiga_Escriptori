@@ -1,5 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.javierjimenez.Noms_Mongo.NomsController" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.javierjimenez.Noms_Mongo.NomsController">
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="351.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="275.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="275.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="126.0" minHeight="5.0" prefHeight="16.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="nomProd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="-229.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="buscarNom" mnemonicParsing="false" onAction="#buscarNombre" text="Buscar Nombre">
+               <GridPane.margin>
+                  <Insets left="213.0" top="-229.0" />
+               </GridPane.margin>
+            </Button>
+            <TextField fx:id="portada" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="141.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-169.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="juego" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="141.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-92.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="escena1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="141.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="-16.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="escena2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="141.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="10.0" top="58.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="nombre" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="-105.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Nombre">
+               <GridPane.margin>
+                  <Insets left="201.0" top="-105.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="genero" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="-26.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Género">
+               <GridPane.margin>
+                  <Insets left="201.0" top="-26.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="distribuidora" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="49.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Distribuidora">
+               <GridPane.margin>
+                  <Insets left="201.0" top="49.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="plataforma" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="124.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Plataforma">
+               <GridPane.margin>
+                  <Insets left="201.0" top="124.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Edad" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="36.0" top="142.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Activar" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="179.0" top="142.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="cantidad" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="198.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Cantidad">
+               <GridPane.margin>
+                  <Insets left="201.0" top="198.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="precio" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="176.0">
+               <GridPane.margin>
+                  <Insets left="17.0" top="272.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label text="Precio">
+               <GridPane.margin>
+                  <Insets left="201.0" top="272.0" />
+               </GridPane.margin>
+            </Label>
+            <Button fx:id="nuevo" mnemonicParsing="false" onAction="#nuevoProducto" text="Nuevo Producto" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="149.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="editar" mnemonicParsing="false" onAction="#editarProducto" text="Editar Producto" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="9.0" />
+               </GridPane.margin>
+            </Button>
+            <Label text="Imagen Portada" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="161.0" top="-169.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Imagen Juego" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="161.0" top="-92.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Escena 1" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="161.0" top="-16.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Escena 2" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="161.0" top="58.0" />
+               </GridPane.margin>
+            </Label>
+            <ComboBox fx:id="edad" onAction="#edadProd" prefWidth="73.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="17.0" top="194.0" />
+               </GridPane.margin>
+            </ComboBox>
+            <ComboBox fx:id="activar" onAction="#selActivar" prefWidth="73.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="166.0" top="194.0" />
+               </GridPane.margin>
+            </ComboBox>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>
