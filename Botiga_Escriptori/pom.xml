@@ -39,7 +39,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>net.javierjimenez.Noms_Mongo.App</mainClass>
+							<mainClass>net.javierjimenez.Botiga_Escriptori.App</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
