@@ -124,12 +124,12 @@
             </Label>
             <Button fx:id="nuevo" mnemonicParsing="false" onAction="#nuevoProducto" text="Nuevo Producto" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="149.0" />
+                  <Insets left="33.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="editar" mnemonicParsing="false" onAction="#editarProducto" text="Editar Producto" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="editar" mnemonicParsing="false" onAction="#editarProducto" text="Editar Producto" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="9.0" />
+                  <Insets left="194.0" />
                </GridPane.margin>
             </Button>
             <Label text="Imagen Portada" GridPane.columnIndex="1">
@@ -162,6 +162,16 @@
                   <Insets left="166.0" top="194.0" />
                </GridPane.margin>
             </ComboBox>
+            <Button fx:id="anterior" mnemonicParsing="false" onAction="#productoAnterior" text="Anterior" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="38.0" />
+               </GridPane.margin>
+            </Button>
+            <Button fx:id="siguiente" mnemonicParsing="false" onAction="#siguienteProducto" text="Siguiente" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="157.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </center>
