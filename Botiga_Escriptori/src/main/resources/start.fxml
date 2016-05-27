@@ -94,7 +94,7 @@
             </Label>
             <Label text="Edad" GridPane.columnIndex="1">
                <GridPane.margin>
-                  <Insets left="36.0" top="142.0" />
+                  <Insets left="43.0" top="142.0" />
                </GridPane.margin>
             </Label>
             <Label text="Activar" GridPane.columnIndex="1">
@@ -152,26 +152,16 @@
                   <Insets left="161.0" top="58.0" />
                </GridPane.margin>
             </Label>
-            <ComboBox fx:id="edad" onAction="#edadProd" prefWidth="73.0" GridPane.columnIndex="1">
+            <ComboBox fx:id="edad" prefHeight="31.0" prefWidth="85.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="17.0" top="194.0" />
                </GridPane.margin>
             </ComboBox>
-            <ComboBox fx:id="activar" onAction="#selActivar" prefWidth="73.0" GridPane.columnIndex="1">
+            <ComboBox fx:id="activar" prefWidth="73.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="166.0" top="194.0" />
                </GridPane.margin>
             </ComboBox>
-            <Button fx:id="anterior" mnemonicParsing="false" onAction="#productoAnterior" text="Anterior" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="38.0" />
-               </GridPane.margin>
-            </Button>
-            <Button fx:id="siguiente" mnemonicParsing="false" onAction="#siguienteProducto" text="Siguiente" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="157.0" />
-               </GridPane.margin>
-            </Button>
          </children>
       </GridPane>
    </center>
