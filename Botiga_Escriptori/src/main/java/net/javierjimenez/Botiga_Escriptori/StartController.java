@@ -69,8 +69,14 @@ public class StartController implements Initializable {
 
 	private MongoCollection<Document> col;
 
+	public StartController(){
+		
+	}
+	
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		System.out.println(arg0 + " | " + arg1);
+		
 		edad.getItems().addAll("3+", "7+", "12+", "16+", "18+");
 		activar.getItems().addAll("Si", "No");
 
