@@ -25,6 +25,7 @@ import com.mongodb.client.MongoDatabase;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 
 public class StartController implements Initializable {
 	@FXML
@@ -52,6 +53,8 @@ public class StartController implements Initializable {
 	@FXML
 	private TextField precio;
 	@FXML
+	private TextArea descripcion;
+	@FXML
 	private Button nuevo;
 	@FXML
 	private Button editar;
@@ -61,6 +64,8 @@ public class StartController implements Initializable {
 	private ComboBox<String> activar = new ComboBox<>();
 
 	private MongoClient client;
+
+	private Document edit;
 
 	private MongoCollection<Document> col;
 
@@ -82,26 +87,28 @@ public class StartController implements Initializable {
 	public void buscarNombre(ActionEvent event) {
 
 		String name = nomProd.getText();
-		Document doc = col.find(eq("nom", name)).first();
+		edit = col.find(eq("nom", name)).first();
 
-		if (doc == null) {
+		if (edit == null) {
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problema de Búsqueda");
 			alert.setHeaderText("ALERTA: Problema en la búsqueda");
 			alert.setContentText("Los datos escritos son erróneos o\nno existe dicho nombre.\nRehaga la búsqueda.");
 			alert.showAndWait();
 		} else {
+			nuevo.setDisable(true);
 
-			nombre.setText((String) doc.get("nom"));
-			genero.setText((String) doc.get("genero"));
-			distribuidora.setText((String) doc.get("distribuidora"));
-			plataforma.setText((String) doc.get("plataforma"));
-			edad.setValue((String) doc.get("edad"));
-			cantidad.setText(Integer.toString((int) doc.get("cantidad")));
-			activar.setValue((String) doc.get("activado"));
-			precio.setText(Double.toString((double) doc.get("precio")));
+			nombre.setText((String) edit.get("nom"));
+			genero.setText((String) edit.get("genero"));
+			distribuidora.setText((String) edit.get("distribuidora"));
+			plataforma.setText((String) edit.get("plataforma"));
+			edad.setValue((String) edit.get("edad"));
+			cantidad.setText(Integer.toString((int) edit.get("cantidad")));
+			activar.setValue((String) edit.get("activado"));
+			precio.setText(Double.toString((double) edit.get("precio")));
+			descripcion.setText((String) edit.getString("descripcion"));
 
-			List<java.lang.String> imagenes = (List<String>) doc.get("imagenes");
+			List<java.lang.String> imagenes = (List<String>) edit.get("imagenes");
 
 			portada.setText(imagenes.get(0));
 			juego.setText(imagenes.get(1));
@@ -115,10 +122,11 @@ public class StartController implements Initializable {
 	@FXML
 	public void nuevoProducto(ActionEvent event) {
 
-		if (nombre.getText().equals("") || genero.getText().equals("") || distribuidora.getText().equals("")
-				|| plataforma.getText().equals("") || cantidad.getText().equals("") || precio.getText().equals("")
-				|| portada.getText().equals("") || juego.getText().equals("") || escena1.getText().equals("")
-				|| escena2.getText().equals("") || activar.getValue() == null || edad.getValue() == null) {
+		if (nombre.getText().equals("") || descripcion.getText().equals("") || genero.getText().equals("")
+				|| distribuidora.getText().equals("") || plataforma.getText().equals("")
+				|| cantidad.getText().equals("") || precio.getText().equals("") || portada.getText().equals("")
+				|| juego.getText().equals("") || escena1.getText().equals("") || escena2.getText().equals("")
+				|| activar.getValue() == null || edad.getValue() == null) {
 
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Problema de Búsqueda");
@@ -128,36 +136,107 @@ public class StartController implements Initializable {
 
 		} else {
 
-			List<String> imagenes = new ArrayList<String>();
-			imagenes.add(portada.getText());
-			imagenes.add(juego.getText());
-			imagenes.add(escena1.getText());
-			imagenes.add(escena2.getText());
+			String n = nombre.getText();
+			Document doc = col.find(eq("nom", n)).first();
 
-			Document newDoc = new Document("nom", nombre.getText()).append("portada", portada.getText())
-					.append("imagenes", imagenes).append("genero", genero.getText())
-					.append("distribuidora", distribuidora.getText()).append("plataforma", plataforma.getText())
-					.append("edad", edad.getValue()).append("cantidad", Integer.parseInt(cantidad.getText()))
-					.append("ventas", 0).append("activado", activar.getValue())
-					.append("precio", Double.parseDouble(precio.getText()));
+			if (doc != null && plataforma.getText().equals((String) doc.get("plataforma"))) {
 
-			col.insertOne(newDoc);
-			
-			nombre.setText("");
-			genero.setText("");
-			distribuidora.setText("");
-			plataforma.setText("");
-			cantidad.setText("");
-			precio.setText("");
-			portada.setText("");
-			juego.setText("");
-			escena1.setText("");
-			escena2.setText("");
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Problema al crear Producto");
+				alert.setHeaderText("ALERTA: Problema al crear el producto");
+				alert.setContentText("Ya existe dicho producto.");
+				alert.showAndWait();
+
+				nombre.setText("");
+				descripcion.setText("");
+				genero.setText("");
+				distribuidora.setText("");
+				plataforma.setText("");
+				cantidad.setText("");
+				precio.setText("");
+				portada.setText("");
+				juego.setText("");
+				escena1.setText("");
+				escena2.setText("");
+
+			} else {
+
+				if (portada.getText().contains(".") && portada.getText().contains(".")
+						&& portada.getText().contains(".") && portada.getText().contains(".")) {
+
+				} else {
+
+					List<String> imagenes = new ArrayList<String>();
+					imagenes.add(portada.getText());
+					imagenes.add(juego.getText());
+					imagenes.add(escena1.getText());
+					imagenes.add(escena2.getText());
+
+					Document newDoc = new Document("nom", nombre.getText()).append("descripcion", descripcion.getText())
+							.append("portada", portada.getText()).append("imagenes", imagenes)
+							.append("genero", genero.getText()).append("distribuidora", distribuidora.getText())
+							.append("plataforma", plataforma.getText()).append("edad", edad.getValue())
+							.append("cantidad", Integer.parseInt(cantidad.getText())).append("ventas", 0)
+							.append("activado", activar.getValue())
+							.append("precio", Double.parseDouble(precio.getText()));
+
+					col.insertOne(newDoc);
+
+					nombre.setText("");
+					descripcion.setText("");
+					genero.setText("");
+					distribuidora.setText("");
+					plataforma.setText("");
+					cantidad.setText("");
+					precio.setText("");
+					portada.setText("");
+					juego.setText("");
+					escena1.setText("");
+					escena2.setText("");
+				}
+			}
 		}
 	}
 
 	@FXML
 	public void editarProducto(ActionEvent event) {
 
+		Document editProd = new Document();
+
+		List<String> imagenes = new ArrayList<String>();
+		imagenes.add(portada.getText());
+		imagenes.add(juego.getText());
+		imagenes.add(escena1.getText());
+		imagenes.add(escena2.getText());
+
+		editProd.append("$set",
+				new Document().append("nom", nombre.getText()).append("descripcion", descripcion.getText())
+						.append("portada", portada.getText()).append("imagenes", imagenes)
+						.append("genero", genero.getText()).append("distribuidora", distribuidora.getText())
+						.append("plataforma", plataforma.getText()).append("edad", edad.getValue())
+						.append("cantidad", Integer.parseInt(cantidad.getText())).append("ventas", 0)
+						.append("activado", activar.getValue()).append("precio", Double.parseDouble(precio.getText())));
+
+		col.updateOne(edit, editProd);
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Actualización tramitada");
+		alert.setContentText("Se ha actualizado el producto");
+		
+		nomProd.setText("");
+		nombre.setText("");
+		descripcion.setText("");
+		genero.setText("");
+		distribuidora.setText("");
+		plataforma.setText("");
+		cantidad.setText("");
+		precio.setText("");
+		portada.setText("");
+		juego.setText("");
+		escena1.setText("");
+		escena2.setText("");
+		
+		editar.setDisable(true);
+		nuevo.setDisable(false);
 	}
 }

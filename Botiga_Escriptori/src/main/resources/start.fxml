@@ -4,22 +4,24 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.javierjimenez.Botiga_Escriptori.StartController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="608.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.javierjimenez.Botiga_Escriptori.StartController">
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="567.0" prefWidth="626.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.0" minWidth="10.0" prefWidth="351.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="275.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="286.0" minHeight="10.0" prefHeight="275.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="126.0" minHeight="5.0" prefHeight="16.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="440.0" minHeight="10.0" prefHeight="323.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="250.0" minHeight="0.0" prefHeight="186.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="115.0" minHeight="0.0" prefHeight="81.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="nomProd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
@@ -99,7 +101,7 @@
             </Label>
             <Label text="Activar" GridPane.columnIndex="1">
                <GridPane.margin>
-                  <Insets left="179.0" top="142.0" />
+                  <Insets left="185.0" top="142.0" />
                </GridPane.margin>
             </Label>
             <TextField fx:id="cantidad" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="176.0">
@@ -122,14 +124,14 @@
                   <Insets left="201.0" top="272.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="nuevo" mnemonicParsing="false" onAction="#nuevoProducto" text="Nuevo Producto" GridPane.rowIndex="1">
+            <Button fx:id="nuevo" mnemonicParsing="false" onAction="#nuevoProducto" text="Nuevo Producto" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="33.0" />
+                  <Insets left="33.0" top="-23.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="editar" mnemonicParsing="false" onAction="#editarProducto" text="Editar Producto" GridPane.rowIndex="1">
+            <Button fx:id="editar" mnemonicParsing="false" onAction="#editarProducto" text="Editar Producto" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="194.0" />
+                  <Insets left="194.0" top="-23.0" />
                </GridPane.margin>
             </Button>
             <Label text="Imagen Portada" GridPane.columnIndex="1">
@@ -157,11 +159,21 @@
                   <Insets left="17.0" top="194.0" />
                </GridPane.margin>
             </ComboBox>
-            <ComboBox fx:id="activar" prefWidth="73.0" GridPane.columnIndex="1">
+            <ComboBox fx:id="activar" prefHeight="31.0" prefWidth="83.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets left="166.0" top="194.0" />
                </GridPane.margin>
             </ComboBox>
+            <TextArea fx:id="descripcion" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="135.0" prefWidth="592.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="17.0" top="-2.0" />
+               </GridPane.margin>
+            </TextArea>
+            <Label text="Descripción">
+               <GridPane.margin>
+                  <Insets left="17.0" top="347.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
    </center>
