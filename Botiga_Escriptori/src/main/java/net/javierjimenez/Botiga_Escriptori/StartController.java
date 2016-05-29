@@ -27,56 +27,149 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 
+/**
+ * 
+ * @author Surrui
+ *
+ */
 public class StartController implements Initializable {
+
+	/**
+	 * Objeto TextField que contiene el String a buscar en la base de datos
+	 */
 	@FXML
 	private TextField nomProd;
+
+	/**
+	 * Objeto Button que inicia la busqueda en la Base de Datos.
+	 */
 	@FXML
 	private Button buscarNom;
+
+	/**
+	 * Objeto TextField que contiene el nombre de la imagen de Portada del Juego
+	 */
 	@FXML
 	private TextField portada;
+
+	/**
+	 * Objeto TextField que contiene el nombre de la imagen del CD del Juego
+	 */
 	@FXML
 	private TextField juego;
+
+	/**
+	 * Objeto TextField que contiene el nombre de la imagen de una escena del
+	 * Juego
+	 */
 	@FXML
 	private TextField escena1;
+
+	/**
+	 * Objeto TextField que contiene el nombre de la imagen de una escena del
+	 * Juego
+	 */
 	@FXML
 	private TextField escena2;
+
+	/**
+	 * Objeto TextField que contiene el nombre del Juego
+	 */
 	@FXML
 	private TextField nombre;
+
+	/**
+	 * Objeto TextField que contiene el genero del Juego
+	 */
 	@FXML
 	private TextField genero;
+
+	/**
+	 * Objeto TextField que contiene la distribuidora del Juego
+	 */
 	@FXML
 	private TextField distribuidora;
+
+	/**
+	 * Objeto TextField que contiene la plataforma del Juego
+	 */
 	@FXML
 	private TextField plataforma;
+
+	/**
+	 * Objeto TextField que contiene las unidades en stock del Juego
+	 */
 	@FXML
 	private TextField cantidad;
+
+	/**
+	 * Objeto TextField que contiene el precio del Juego
+	 */
 	@FXML
 	private TextField precio;
+
+	/**
+	 * Objeto TextArea que contiene la descripcion del Juego
+	 */
 	@FXML
 	private TextArea descripcion;
+
+	/**
+	 * Objeto Button que permite añadir un nuevo Juego en la base de datos
+	 */
 	@FXML
 	private Button nuevo;
+
+	/**
+	 * Objeto Button que permite editar un Juego previamente seleccionado
+	 */
 	@FXML
 	private Button editar;
+
+	/**
+	 * Objeto ComboBox que contiene las calificaciones de edad del Juego
+	 */
 	@FXML
 	private ComboBox<String> edad = new ComboBox<>();
+
+	/**
+	 * Objeto ComboBox que contiene la opcion de tener el Juego activado o no
+	 */
 	@FXML
 	private ComboBox<String> activar = new ComboBox<>();
 
+	/**
+	 * Objeto MongoClient encargado de enlazar el proyecto con la base de datos
+	 * MongoDB
+	 */
 	private MongoClient client;
 
+	/**
+	 * Objeto Document que contiene el Juego a editar
+	 */
 	private Document edit;
 
+	/**
+	 * Objeto MongoCollection que contiene los Document de la colección indicada
+	 * por nosotros.
+	 */
 	private MongoCollection<Document> col;
 
-	public StartController(){
-		
+	/**
+	 * Constructor del objeto StartController
+	 */
+	public StartController() {
+
 	}
-	
+
+	/**
+	 * Metodo encargado de iniciar la conexión a la base de datos y de rellenar
+	 * los ComboBox
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		System.out.println(arg0 + " | " + arg1);
-		
+
 		edad.getItems().addAll("3+", "7+", "12+", "16+", "18+");
 		activar.getItems().addAll("Si", "No");
 
@@ -88,6 +181,14 @@ public class StartController implements Initializable {
 
 	}
 
+	/**
+	 * Metodo que se activa al hacer click en el objeto Button buscarNom,
+	 * buscando el nombre escrito en el TextField nomProd en la base de datos.
+	 * En caso de que lo encuentre, rellenara los demas campos del programa con
+	 * los datos del Juego en question.
+	 * 
+	 * @param event
+	 */
 	@SuppressWarnings("unchecked")
 	@FXML
 	public void buscarNombre(ActionEvent event) {
@@ -125,6 +226,14 @@ public class StartController implements Initializable {
 		}
 	}
 
+	/**
+	 * Metodo que se activa al hacer click en el objeto Button nuevo, generando
+	 * un nuevo Juego tras recoger los datos escritos y seleccionados en el
+	 * programa. Se comprobara que se hayan rellenado todos los datos y que el
+	 * objeto a crear no exista ya en nuestra base de datos.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void nuevoProducto(ActionEvent event) {
 
@@ -204,6 +313,13 @@ public class StartController implements Initializable {
 		}
 	}
 
+	/**
+	 * Metodo que se activa al hacer click en el objeto Button editar, encargado
+	 * de editar el Juego previamente buscado en la base de datos, y
+	 * actualizandolo con los nuevos datos.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	public void editarProducto(ActionEvent event) {
 
@@ -224,11 +340,11 @@ public class StartController implements Initializable {
 						.append("activado", activar.getValue()).append("precio", Double.parseDouble(precio.getText())));
 
 		col.updateOne(edit, editProd);
-		
+
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Actualización tramitada");
 		alert.setContentText("Se ha actualizado el producto");
-		
+
 		nomProd.setText("");
 		nombre.setText("");
 		descripcion.setText("");
@@ -241,7 +357,7 @@ public class StartController implements Initializable {
 		juego.setText("");
 		escena1.setText("");
 		escena2.setText("");
-		
+
 		editar.setDisable(true);
 		nuevo.setDisable(false);
 	}
