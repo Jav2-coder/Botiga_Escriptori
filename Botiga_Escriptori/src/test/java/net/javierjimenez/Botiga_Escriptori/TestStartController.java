@@ -1,13 +1,5 @@
 package net.javierjimenez.Botiga_Escriptori;
 
-import org.junit.Test;
-
-import junit.framework.TestCase;
-
-public class TestStartController extends TestCase {
+public class TestStartController {
 	
-	@Test
-	public void testStartControllerExecute() {
-
-	}
 }

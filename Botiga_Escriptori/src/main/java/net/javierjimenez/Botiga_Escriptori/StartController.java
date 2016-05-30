@@ -1,17 +1,14 @@
 package net.javierjimenez.Botiga_Escriptori;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static com.mongodb.client.model.Filters.*;
 
@@ -32,7 +29,7 @@ import javafx.scene.control.TextArea;
  * @author Surrui
  *
  */
-public class StartController implements Initializable {
+public class StartController {
 
 	/**
 	 * Objeto TextField que contiene el String a buscar en la base de datos
@@ -166,14 +163,12 @@ public class StartController implements Initializable {
 	 * Metodo encargado de iniciar la conexión a la base de datos y de rellenar
 	 * los ComboBox
 	 */
-	public void initialize(URL arg0, ResourceBundle arg1) {
-
-		System.out.println(arg0 + " | " + arg1);
+	public void initialize() {
 
 		edad.getItems().addAll("3+", "7+", "12+", "16+", "18+");
 		activar.getItems().addAll("Si", "No");
 
-		client = new MongoClient(new MongoClientURI("mongodb://admin000:admin001@ds013212.mlab.com:13212/botiga_daw"));
+		client = new MongoClient(new MongoClientURI("mongodb://admin:admin@ds013212.mlab.com:13212/botiga_daw"));
 		MongoDatabase db = client.getDatabase("botiga_daw");
 		col = db.getCollection("products");
 
