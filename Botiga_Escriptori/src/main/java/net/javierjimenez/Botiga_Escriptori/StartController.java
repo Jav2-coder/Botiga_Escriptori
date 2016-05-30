@@ -239,9 +239,9 @@ public class StartController {
 				|| activar.getValue() == null || edad.getValue() == null) {
 
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Problema de Búsqueda");
-			alert.setHeaderText("ALERTA: Problema en la búsqueda");
-			alert.setContentText("Los datos escritos son erróneos o\nno existe dicho nombre.\nRehaga la búsqueda.");
+			alert.setTitle("Problema al Guardar");
+			alert.setHeaderText("ALERTA: Problema al guardar el producto");
+			alert.setContentText("No pueden haber campos en blanco!");
 			alert.showAndWait();
 
 		} else {
@@ -318,42 +318,58 @@ public class StartController {
 	@FXML
 	public void editarProducto(ActionEvent event) {
 
-		Document editProd = new Document();
+		if (nombre.getText().equals("") || descripcion.getText().equals("") || genero.getText().equals("")
+				|| distribuidora.getText().equals("") || plataforma.getText().equals("")
+				|| cantidad.getText().equals("") || precio.getText().equals("") || portada.getText().equals("")
+				|| juego.getText().equals("") || escena1.getText().equals("") || escena2.getText().equals("")
+				|| activar.getValue() == null || edad.getValue() == null) {
 
-		List<String> imagenes = new ArrayList<String>();
-		imagenes.add(portada.getText());
-		imagenes.add(juego.getText());
-		imagenes.add(escena1.getText());
-		imagenes.add(escena2.getText());
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Problema de Edición");
+			alert.setHeaderText("ALERTA: Problema en la edición");
+			alert.setContentText("No pueden haber campos en blanco!");
+			alert.showAndWait();
 
-		editProd.append("$set",
-				new Document().append("nom", nombre.getText()).append("descripcion", descripcion.getText())
-						.append("portada", portada.getText()).append("imagenes", imagenes)
-						.append("genero", genero.getText()).append("distribuidora", distribuidora.getText())
-						.append("plataforma", plataforma.getText()).append("edad", edad.getValue())
-						.append("cantidad", Integer.parseInt(cantidad.getText())).append("ventas", 0)
-						.append("activado", activar.getValue()).append("precio", Double.parseDouble(precio.getText())));
+		} else {
 
-		col.updateOne(edit, editProd);
+			Document editProd = new Document();
 
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Actualización tramitada");
-		alert.setContentText("Se ha actualizado el producto");
+			List<String> imagenes = new ArrayList<String>();
+			imagenes.add(portada.getText());
+			imagenes.add(juego.getText());
+			imagenes.add(escena1.getText());
+			imagenes.add(escena2.getText());
 
-		nomProd.setText("");
-		nombre.setText("");
-		descripcion.setText("");
-		genero.setText("");
-		distribuidora.setText("");
-		plataforma.setText("");
-		cantidad.setText("");
-		precio.setText("");
-		portada.setText("");
-		juego.setText("");
-		escena1.setText("");
-		escena2.setText("");
+			editProd.append("$set",
+					new Document().append("nom", nombre.getText()).append("descripcion", descripcion.getText())
+							.append("portada", portada.getText()).append("imagenes", imagenes)
+							.append("genero", genero.getText()).append("distribuidora", distribuidora.getText())
+							.append("plataforma", plataforma.getText()).append("edad", edad.getValue())
+							.append("cantidad", Integer.parseInt(cantidad.getText())).append("ventas", 0)
+							.append("activado", activar.getValue())
+							.append("precio", Double.parseDouble(precio.getText())));
 
-		editar.setDisable(true);
-		nuevo.setDisable(false);
+			col.updateOne(edit, editProd);
+
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Actualización tramitada");
+			alert.setContentText("Se ha actualizado el producto");
+
+			nomProd.setText("");
+			nombre.setText("");
+			descripcion.setText("");
+			genero.setText("");
+			distribuidora.setText("");
+			plataforma.setText("");
+			cantidad.setText("");
+			precio.setText("");
+			portada.setText("");
+			juego.setText("");
+			escena1.setText("");
+			escena2.setText("");
+
+			editar.setDisable(true);
+			nuevo.setDisable(false);
+		}
 	}
 }
